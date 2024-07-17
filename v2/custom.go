@@ -20,7 +20,7 @@ var (
 	configOptions    *config.ConfigOptions
 	activeConfigPath string
 	coreLogFactory   log.Factory
-	useFlutterBridge bool = true
+	useFlutterBridge bool = false
 )
 
 func StopAndAlert(msgType pb.MessageType, message string) {

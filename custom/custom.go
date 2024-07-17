@@ -67,8 +67,10 @@ func start(configPath *C.char, disableMemoryLimit bool) (CErr *C.char) {
 
 	_, err := v2.Start(&pb.StartRequest{
 		ConfigPath:             C.GoString(configPath),
+		ConfigContent:          C.GoString(configPath),
 		EnableOldCommandServer: true,
 		DisableMemoryLimit:     disableMemoryLimit,
+		EnableRawConfig:        true,
 	})
 	return emptyOrErrorC(err)
 }
@@ -84,9 +86,11 @@ func stop() (CErr *C.char) {
 func restart(configPath *C.char, disableMemoryLimit bool) (CErr *C.char) {
 
 	_, err := v2.Restart(&pb.StartRequest{
+		ConfigContent:          C.GoString(configPath),
 		ConfigPath:             C.GoString(configPath),
 		EnableOldCommandServer: true,
 		DisableMemoryLimit:     disableMemoryLimit,
+		EnableRawConfig:        true,
 	})
 	return emptyOrErrorC(err)
 }
